@@ -10,6 +10,8 @@ from .tasks import (
     HCaptchaTaskProxyless,
     SquareNetTask,
     ImageToTextTask,
+    GeeTestProxylessTask,
+    GeeTestTask,
     CustomCaptchaTask,
 )
 from .exceptions import AnticaptchaException

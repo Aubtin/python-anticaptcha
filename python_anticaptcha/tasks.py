@@ -235,3 +235,43 @@ class SquareNetTask(BaseTask):
         data["rowsCount"] = self.rowsCount
         data["columnsCount"] = self.columnsCount
         return data
+
+
+class GeeTestProxylessTask(BaseTask):
+    type = "GeeTestTaskProxyless"
+    websiteURL = None
+    gt = None
+    challenge = None
+    geetestApiServerSubdomain = None
+    geetestGetLib = None
+
+    def __init__(
+        self,
+         website_url,
+         gt,
+         challenge,
+         geetest_api_server_subdomain=None,
+         geetest_get_lib=None
+     ):
+        self.websiteURL = website_url
+        self.gt = gt
+        self.challenge = challenge
+        self.geetestApiServerSubdomain = geetest_api_server_subdomain
+        self.geetestGetLib = geetest_get_lib
+
+    def serialize(self):
+        data = super(GeeTestProxylessTask, self).serialize()
+        data["type"] = self.type
+        data["websiteURL"] = self.websiteURL
+        data["gt"] = self.gt
+        data["challenge"] = self.challenge
+        if self.geetestApiServerSubdomain is not None:
+            data["geetestApiServerSubdomain"] = self.geetestApiServerSubdomain
+        if self.geetestGetLib is not None:
+            data["geetestGetLib"] = self.geetestGetLib
+
+        return data
+
+
+class GeeTestTask(ProxyMixin, GeeTestProxylessTask):
+    type = "GeeTestTask"

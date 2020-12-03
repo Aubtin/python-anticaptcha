@@ -27,6 +27,9 @@ class Job(object):
         self._update()
         return self._last_result["status"] == "ready"
 
+    def get_solution(self):  # Geetest, and raw response
+        return self._last_result["solution"]
+
     def get_solution_response(self):  # Recaptcha
         return self._last_result["solution"]["gRecaptchaResponse"]
 
